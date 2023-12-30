@@ -9,10 +9,14 @@ import (
 
 
 func main() {
-	l := os.Args[1:]
-	if len(l) == 1 {
-		port := l[0]
-		s := server.NewServer(config.SetPort(port))
+	if len(os.Args) < 2 {
+		var s server.Server
+		if len(os.Args) == 1 {
+			s = *server.NewServer()
+		} else {
+			port := os.Args[1]
+			s = *server.NewServer(config.SetPort(port))
+		}	
 		s.Start()
 	} else {
 		fmt.Println("[USAGE]: ./TCPChat $port")

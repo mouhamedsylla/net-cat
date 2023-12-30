@@ -51,6 +51,7 @@ func (s *Server) Start() {
 	if err != nil {
 		return
 	}
+	fmt.Printf("Listening on the port %s", s.option.PORT)
 
 	s.listener = ln
 	go s.AcceptLoop()
